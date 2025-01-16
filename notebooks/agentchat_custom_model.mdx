@@ -1,6 +1,10 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_custom_model.ipynb
+description: Define and load a custom model
 source_notebook: /notebook/agentchat_custom_model.ipynb
+tags:
+- integration
+- custom model
 title: Agent Chat with custom model loading
 ---
 
@@ -18,17 +22,19 @@ default prompts of the Agent’s**
 
 ## Requirements
 
-````mdx-code-block
-:::info Requirements
+
+<div class="info Requirements">
+<Info>
 Some extra dependencies are needed for this notebook, which can be installed via pip:
 
 ```bash
 pip install pyautogen torch transformers sentencepiece
 ```
 
-For more information, please refer to the [installation guide](/docs/installation/).
-:::
-````
+For more information, please refer to the [installation guide](/docs/installation/Installation).
+</Info>
+</div>
+
 
 ```python
 from types import SimpleNamespace
@@ -192,7 +198,7 @@ class CustomModelClient:
 ## Set your API Endpoint
 
 The
-[`config_list_from_json`](https://ag2ai.github.io/ag2/docs/reference/oai/openai_utils#config_list_from_json)
+[`config_list_from_json`](https://docs.ag2.ai/docs/reference/oai/openai_utils#config-list-from-json)
 function loads a list of configurations from an environment variable or
 a json file.
 
@@ -228,8 +234,7 @@ The json looks like the following:
 ```
 
 You can set the value of config_list in any way you prefer. Please refer
-to this
-[notebook](https://github.com/microsoft/autogen/blob/main/notebook/oai_openai_utils.ipynb)
+to this [User Guide](https://docs.ag2.ai/docs/topics/llm_configuration)
 for full code examples of the different methods.
 
 ## Set the config for the custom model

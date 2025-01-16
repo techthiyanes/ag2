@@ -1,6 +1,12 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_oai_assistant_function_call.ipynb
+description: This Jupyter Notebook demonstrates how to leverage OSS Insight (Open
+  Source Software Insight) for advanced GitHub data analysis by defining `Function
+  calls` in AutoGen for the OpenAI Assistant.
 source_notebook: /notebook/agentchat_oai_assistant_function_call.ipynb
+tags:
+- OpenAI Assistant
+- tool/function
 title: 'Chat with OpenAI Assistant using function call in AutoGen: OSS Insights for
   Advanced GitHub Data Analysis'
 ---
@@ -26,16 +32,18 @@ The notebook is structured into four main sections:
 AutoGen requires `Python>=3.9`. To run this notebook example, please
 install:
 
-````mdx-code-block
-:::info Requirements
+
+<div class="info Requirements">
+<Info>
 Install `pyautogen`:
 ```bash
 pip install pyautogen
 ```
 
-For more information, please refer to the [installation guide](/docs/installation/).
-:::
-````
+For more information, please refer to the [installation guide](/docs/installation/Installation).
+</Info>
+</div>
+
 
 ```python
 %%capture --no-stderr
@@ -78,9 +86,7 @@ ossinsight_api_schema = {
 
 
 def get_ossinsight(question):
-    """
-    [Mock] Retrieve the top 10 developers with the most followers on GitHub.
-    """
+    """[Mock] Retrieve the top 10 developers with the most followers on GitHub."""
     report_components = [
         f"Question: {question}",
         "SQL: SELECT `login` AS `user_login`, `followers` AS `followers` FROM `github_users` ORDER BY `followers` DESC LIMIT 10",
@@ -145,11 +151,13 @@ GPT Assistant only supports one OpenAI client. Using the first client in the lis
 No matching assistant found, creating a new assistant
 ```
 
-````mdx-code-block
-:::tip
+
+<div class="tip">
+<Tip>
 Learn more about configuring LLMs for agents [here](/docs/topics/llm_configuration).
-:::
-````
+</Tip>
+</div>
+
 
 ## Fetching GitHub Insight Data using Function Call
 

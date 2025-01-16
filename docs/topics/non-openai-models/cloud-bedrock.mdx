@@ -1,6 +1,9 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/website/docs/topics/non-openai-models/cloud-bedrock.ipynb
+description: Define and load a custom model
 source_notebook: /website/docs/topics/non-openai-models/cloud-bedrock.ipynb
+tags:
+- custom model
 title: Amazon Bedrock
 ---
 
@@ -26,7 +29,7 @@ Amazon Bedrock supports a wide range of models, not only for text
 generation but also for image classification and generation. Not all
 features are supported by AG2 or by the Converse API used. Please see
 [Amazon’s
-documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html#conversation-inference-supported-models-features)
+documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-supported-models-features.html)
 on the features supported by the Converse API.
 
 At this point in time AG2 supports text generation and image
@@ -103,7 +106,7 @@ supports a system prompt (which is where the system messages are not
 included in the message list, but in a separate parameter). This
 defaults to `True`, so set it to `False` if your model (for example
 Mistral’s Instruct models) [doesn’t support this
-feature](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html#conversation-inference-supported-models-features):
+feature](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-supported-models-features.html):
 
 -   supports_system_prompts
 
@@ -752,11 +755,8 @@ We’ll use a Multimodal agent to handle the image
 
 ```python
 import autogen
-from autogen import Agent, AssistantAgent, ConversableAgent, UserProxyAgent
-from autogen.agentchat.contrib.capabilities.vision_capability import VisionCapability
-from autogen.agentchat.contrib.img_utils import get_pil_image, pil_to_data_uri
+from autogen import AssistantAgent, UserProxyAgent
 from autogen.agentchat.contrib.multimodal_conversable_agent import MultimodalConversableAgent
-from autogen.code_utils import content_str
 
 image_agent = MultimodalConversableAgent(
     name="image-explainer",

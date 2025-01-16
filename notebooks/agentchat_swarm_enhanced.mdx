@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_swarm_enhanced.ipynb
+description: Swarm Ochestration
 source_notebook: /notebook/agentchat_swarm_enhanced.ipynb
+tags:
+- orchestration
+- group chat
+- swarm
 title: Enhanced Swarm Orchestration with AG2
 ---
 
@@ -17,8 +22,8 @@ In this notebook, we look at more advanced features of the swarm
 orchestration.
 
 If you are new to swarm, check out [this
-notebook](https://ag2ai.github.io/ag2/docs/notebooks/agentchat_swarm),
-where we introduce the core features of swarms including global context
+notebook](https://docs.ag2.ai/notebooks/agentchat_swarm), where we
+introduce the core features of swarms including global context
 variables, hand offs, and initiating a swarm chat.
 
 In this notebook we’re going to demonstrate these features AG2’s swarm
@@ -28,21 +33,23 @@ orchestration:
 -   Conditional handoffs
 -   Nested chats
 
-````mdx-code-block
-:::info Requirements
+
+<div class="info Requirements">
+<Info>
 Install `ag2`:
 ```bash
 pip install ag2
 ```
 
-For more information, please refer to the [installation guide](/docs/installation/).
-:::
-````
+For more information, please refer to the [installation guide](/docs/installation/Installation).
+</Info>
+</div>
+
 
 ## Set your API Endpoint
 
 The
-[`config_list_from_json`](https://ag2ai.github.io/ag2/docs/reference/oai/openai_utils#config_list_from_json)
+[`config_list_from_json`](https://docs.ag2.ai/docs/reference/oai/openai_utils#config-list-from-json)
 function loads a list of configurations from an environment variable or
 a json file.
 
@@ -171,7 +178,6 @@ ORDER_DATABASE = {
 # ORDER FUNCTIONS
 def check_order_id(order_id: str, context_variables: dict) -> SwarmResult:
     """Check if the order ID is valid"""
-
     # Restricts order to checking to the logged in user
     if (
         context_variables["logged_in_username"]
@@ -191,7 +197,6 @@ def check_order_id(order_id: str, context_variables: dict) -> SwarmResult:
 
 def record_order_id(order_id: str, context_variables: dict) -> SwarmResult:
     """Record the order ID in the workflow context"""
-
     if order_id not in ORDER_DATABASE:
         return SwarmResult(
             context_variables=context_variables,

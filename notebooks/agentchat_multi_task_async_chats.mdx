@@ -1,6 +1,12 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_multi_task_async_chats.ipynb
+description: Use conversational agents to solve a set of tasks with a sequence of
+  async chats.
 source_notebook: /notebook/agentchat_multi_task_async_chats.ipynb
+tags:
+- orchestration
+- async
+- sequential chats
 title: Solving Multiple Tasks in a Sequence of Async Chats
 ---
 
@@ -19,8 +25,9 @@ task(s), the tasks will be solved concurrently, with the summaries from
 prerequisite task(s) provided to subsequent tasks as context, if the
 `summary_method` argument is specified.
 
-:::info Requirements
 
+<div class="info Requirements">
+<Info>
 Install `pyautogen`:
 
 ```bash
@@ -28,9 +35,9 @@ pip install pyautogen
 ```
 
 For more information, please refer to the [installation
-guide](../docs/installation/).
-
-:::
+guide](../docs/installation/Installation).
+</Info>
+</div>
 
 ```python
 import autogen
@@ -39,12 +46,13 @@ config_list = autogen.config_list_from_json(env_or_file="OAI_CONFIG_LIST")
 llm_config = {"config_list": config_list}
 ```
 
-:::tip
 
+<div class="tip">
+<Tip>
 Learn more about the various ways to configure LLM endpoints
 [here](../docs/topics/llm_configuration).
-
-:::
+</Tip>
+</div>
 
 ### Example Tasks
 
@@ -118,7 +126,7 @@ user = autogen.UserProxyAgent(
     },  # Please set use_docker=True if docker is available to run the generated code. Using docker is safer than running the generated code directly.
 )
 
-chat_results = await user.a_initiate_chats(  # noqa: F704
+chat_results = await user.a_initiate_chats(
     [
         {
             "chat_id": 1,
@@ -623,7 +631,7 @@ user = autogen.UserProxyAgent(
     },  # Please set use_docker=True if docker is available to run the generated code. Using docker is safer than running the generated code directly.
 )
 
-chat_results = await user.a_initiate_chats(  # noqa: F704
+chat_results = await user.a_initiate_chats(
     [
         {
             "chat_id": 1,
@@ -1189,7 +1197,7 @@ user = autogen.UserProxyAgent(
         "use_docker": False,
     },  # Please set use_docker=True if docker is available to run the generated code. Using docker is safer than running the generated code directly.
 )
-await user.a_initiate_chats(  # noqa: F704
+await user.a_initiate_chats(
     [
         {"chat_id": 1, "recipient": research_assistant, "message": financial_tasks[0], "summary_method": "last_msg"},
         {

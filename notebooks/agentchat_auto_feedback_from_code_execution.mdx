@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_auto_feedback_from_code_execution.ipynb
+description: Use conversable language learning model agents to solve tasks and provide
+  automatic feedback through a comprehensive example of writing, executing, and debugging
+  Python code to compare stock price changes.
 source_notebook: /notebook/agentchat_auto_feedback_from_code_execution.ipynb
+tags:
+- code generation
 title: Task Solving with Code Generation, Execution and Debugging
 ---
 
@@ -24,16 +29,18 @@ to `AssistantAgent`. `AssistantAgent` will debug the code and suggest
 new code if the result contains error. The two agents keep communicating
 to each other until the task is done.
 
-````mdx-code-block
-:::info Requirements
+
+<div class="info Requirements">
+<Info>
 Install the following packages before running the code below:
 ```bash
 pip install pyautogen matplotlib yfinance
 ```
 
-For more information, please refer to the [installation guide](/docs/installation/).
-:::
-````
+For more information, please refer to the [installation guide](/docs/installation/Installation).
+</Info>
+</div>
+
 
 ```python
 from IPython.display import Image, display

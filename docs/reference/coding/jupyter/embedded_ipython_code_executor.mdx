@@ -17,7 +17,7 @@ IPython kernel managed by this class.
 Each execution is stateful and can access variables created from previous
 executions in the same session. The kernel must be installed before using
 this class. The kernel can be installed using the following command:
-`python -m ipykernel install --user --name \{kernel_name}`
+`python -m ipykernel install --user --name {kernel_name}`
 where `kernel_name` is the name of the kernel to install.
 
 **Arguments**:
@@ -39,7 +39,7 @@ def code_extractor() -> CodeExtractor
 ### execute\_code\_blocks
 
 ```python
-def execute_code_blocks(code_blocks: List[CodeBlock]) -> IPythonCodeResult
+def execute_code_blocks(code_blocks: list[CodeBlock]) -> IPythonCodeResult
 ```
 
 (Experimental) Execute a list of code blocks and return the result.

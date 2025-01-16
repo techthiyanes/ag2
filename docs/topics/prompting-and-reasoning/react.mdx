@@ -31,10 +31,10 @@ from typing import Annotated
 
 from tavily import TavilyClient
 
-from autogen import AssistantAgent, UserProxyAgent, config_list_from_json, register_function
+from autogen import AssistantAgent, UserProxyAgent, register_function
 from autogen.agentchat.contrib.capabilities import teachability
 from autogen.cache import Cache
-from autogen.coding import DockerCommandLineCodeExecutor, LocalCommandLineCodeExecutor
+from autogen.coding import LocalCommandLineCodeExecutor
 
 config_list = [
     {"model": "gpt-4", "api_key": os.environ["OPENAI_API_KEY"]},
@@ -46,8 +46,9 @@ config_list = [
 
 ### Define and add tools/actions you want LLM agent(s) to use
 
-We use [Tavily](https://docs.tavily.com/docs/tavily-api/python-sdk) as a
-tool for searching the web.
+We use
+[Tavily](https://docs.tavily.com/docs/python-sdk/tavily-search/getting-started)
+as a tool for searching the web.
 
 ```python
 tavily = TavilyClient(api_key=os.environ["TAVILY_API_KEY"])

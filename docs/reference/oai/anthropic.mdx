@@ -15,35 +15,56 @@ Example usage for Anthropic Bedrock:
 Install the `anthropic` package by running `pip install --upgrade anthropic`.
 - https://docs.anthropic.com/en/docs/quickstart-guide
 
+
+Example usage for Anthropic VertexAI:
+
+Install the `anthropic` package by running `pip install anthropic[vertex]`.
+- https://docs.anthropic.com/en/docs/quickstart-guide
+
 ```python
 import autogen
 
 config_list = [
-    \{
+    {
         "model": "claude-3-sonnet-20240229",
         "api_key": os.getenv("ANTHROPIC_API_KEY"),
         "api_type": "anthropic",
     }
 ]
 
-assistant = autogen.AssistantAgent("assistant", llm_config=\{"config_list": config_list})
+assistant = autogen.AssistantAgent("assistant", llm_config={"config_list": config_list})
 ```
 ```python
 import autogen
 
 config_list = [
-    \{
+    {
         "model": "anthropic.claude-3-5-sonnet-20240620-v1:0",
-        "aws_access_key":\<accessKey>,
-        "aws_secret_key":\<secretKey>,
-        "aws_session_token":\<sessionTok>,
+        "aws_access_key":<accessKey>,
+        "aws_secret_key":<secretKey>,
+        "aws_session_token":<sessionTok>,
         "aws_region":"us-east-1",
         "api_type": "anthropic",
     }
 ]
 
-assistant = autogen.AssistantAgent("assistant", llm_config=\{"config_list": config_list})
+assistant = autogen.AssistantAgent("assistant", llm_config={"config_list": config_list})
 ```
+```python
+
+import autogen
+config_list = [
+    {
+        "model": "claude-3-5-sonnet-20240620-v1:0",
+        "gcp_project_id": "dummy_project_id",
+        "gcp_region": "us-west-2",
+        "gcp_auth_token": "dummy_auth_token",
+        "api_type": "anthropic",
+    }
+]
+
+assistant = autogen.AssistantAgent("assistant", llm_config={"config_list": config_list})
+```python
 
 ## AnthropicClient
 
@@ -66,7 +87,7 @@ Initialize the Anthropic API client.
 ### load\_config
 
 ```python
-def load_config(params: Dict[str, Any])
+def load_config(params: dict[str, Any])
 ```
 
 Load the configuration for the Anthropic API client.
@@ -79,10 +100,18 @@ def cost(response) -> float
 
 Calculate the cost of the completion using the Anthropic pricing.
 
+### create
+
+```python
+def create(params: dict[str, Any]) -> ChatCompletion
+```
+
+Creates a completion using the Anthropic API.
+
 ### message\_retrieval
 
 ```python
-def message_retrieval(response) -> List
+def message_retrieval(response) -> list
 ```
 
 Retrieve and return a list of strings or a list of Choice.Message from the response.
@@ -94,7 +123,7 @@ since that is expected for function or tool calling in the rest of the codebase 
 
 ```python
 @staticmethod
-def get_usage(response: ChatCompletion) -> Dict
+def get_usage(response: ChatCompletion) -> dict
 ```
 
 Get the usage of tokens and their cost information.
@@ -103,7 +132,7 @@ Get the usage of tokens and their cost information.
 
 ```python
 def oai_messages_to_anthropic_messages(
-        params: Dict[str, Any]) -> list[dict[str, Any]]
+        params: dict[str, Any]) -> list[dict[str, Any]]
 ```
 
 Convert messages from OAI format to Anthropic format.

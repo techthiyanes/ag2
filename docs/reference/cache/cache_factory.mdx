@@ -17,7 +17,7 @@ def cache_factory(
         seed: Union[str, int],
         redis_url: Optional[str] = None,
         cache_path_root: str = ".cache",
-        cosmosdb_config: Optional[Dict[str, Any]] = None) -> AbstractCache
+        cosmosdb_config: Optional[dict[str, Any]] = None) -> AbstractCache
 ```
 
 Factory function for creating cache instances.
@@ -43,7 +43,6 @@ are provided, a CosmosDBCache is created. Otherwise, a DiskCache instance is use
 
 **Examples**:
 
-  
   Creating a Redis cache
   
 ```python
@@ -57,10 +56,13 @@ disk_cache = cache_factory("myseed", None)
   
   Creating a Cosmos DB cache:
 ```python
-cosmos_cache = cache_factory("myseed", cosmosdb_config=\{
+cosmos_cache = cache_factory(
+    "myseed",
+    cosmosdb_config={
         "connection_string": "your_connection_string",
         "database_id": "your_database_id",
-        "container_id": "your_container_id"}
-    )
+        "container_id": "your_container_id",
+    },
+)
 ```
 

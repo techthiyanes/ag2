@@ -1,6 +1,10 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agenteval_cq_math.ipynb
+description: 'AgentEval: a multi-agent system for assessing utility of LLM-powered
+  applications'
 source_notebook: /notebook/agenteval_cq_math.ipynb
+tags:
+- eval
 title: Demonstrating the `AgentEval` framework using the task of solving math problems
   as an example
 ---
@@ -32,7 +36,7 @@ alt="AgentEval" />
 </figure>
 
 For more detailed explanations, please refer to the accompanying [blog
-post](https://ag2ai.github.io/ag2/blog/2023/11/20/AgentEval)
+post](https://docs.ag2.ai/blog/2023-11-20-AgentEval)
 
 ## Requirements
 
@@ -107,7 +111,7 @@ Note: you may need to restart the kernel to use updated packages.
 ## Set your API Endpoint
 
 -   The
-    [`config_list_from_json`](https://microsoft.github.io/autogen/docs/reference/oai/openai_utils#config_list_from_json)
+    [`config_list_from_json`](https://docs.ag2.ai/docs/reference/oai/openai_utils#config-list-from-json)
     function loads a list of configurations from an environment variable
     or a json file. It first looks for an environment variable with a
     specified name. The value of the environment variable needs to be a
@@ -115,8 +119,7 @@ Note: you may need to restart the kernel to use updated packages.
     json file with the same name. It filters the configs by filter_dict.
 
 You can set the value of config_list in any way you prefer. Please refer
-to this
-[notebook](https://github.com/microsoft/autogen/blob/main/notebook/oai_openai_utils.ipynb)
+to this [User Guide](https://docs.ag2.ai/docs/topics/llm_configuration)
 for full code examples of the different methods.
 
 ```python
@@ -450,7 +453,7 @@ which will be downloaded from
 [here](https://github.com/julianakiseleva/autogen/tree/agenteval/test/test_files/agenteval-in-out/samples).
 In case you want to replicate the results described in the blog post,
 you can download all the logs for math problems using the following
-[link](https://github.com/julianakiseleva/autogen/tree/agenteval/model-logs/math-problems/agentchat).
+[link](https://github.com/julianakiseleva/autogen/tree/3ac137d52a20a013a39b48d0fea8a8b720116c66/model-logs/math-problems/agentchat).
 
 ```python
 # You can set your own log path - we also limited the number of samples to avoid additional costs.

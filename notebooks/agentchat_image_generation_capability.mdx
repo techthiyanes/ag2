@@ -1,6 +1,10 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_image_generation_capability.ipynb
+description: Generate images with conversable agents.
 source_notebook: /notebook/agentchat_image_generation_capability.ipynb
+tags:
+- capability
+- multimodal
 title: Generate Dalle Images With Conversable Agents
 ---
 
@@ -13,24 +17,24 @@ title: Generate Dalle Images With Conversable Agents
 This notebook illustrates how to add the image generation capability to
 a conversable agent.
 
-````mdx-code-block
-:::info Requirements
+
+<div class="info Requirements">
+<Info>
 Some extra dependencies are needed for this notebook, which can be installed via pip:
 
 ```bash
 pip install pyautogen[lmm]
 ```
 
-For more information, please refer to the [installation guide](/docs/installation/).
-:::
-````
+For more information, please refer to the [installation guide](/docs/installation/Installation).
+</Info>
+</div>
+
 
 First, let’s import all the required modules to run this example.
 
 ```python
 import os
-import re
-from typing import Dict, Optional
 
 from IPython.display import display
 from PIL.Image import Image
@@ -38,8 +42,6 @@ from PIL.Image import Image
 import autogen
 from autogen.agentchat.contrib import img_utils
 from autogen.agentchat.contrib.capabilities import generate_images
-from autogen.cache import Cache
-from autogen.oai import openai_utils
 ```
 
 Let’s define our LLM configs.
@@ -62,11 +64,13 @@ dalle_config = {
 }
 ```
 
-````mdx-code-block
-:::tip
+
+<div class="tip">
+<Tip>
 Learn more about configuring LLMs for agents [here](/docs/topics/llm_configuration).
-:::
-````
+</Tip>
+</div>
+
 
 Our system will consist of 2 main agents: 1. Image generator agent. 2.
 Critic agent.

@@ -14,7 +14,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any, List, Optional
+from typing import Any
 
 
 def run_pydoc_markdown(config_file: Path) -> None:
@@ -34,18 +34,6 @@ def run_pydoc_markdown(config_file: Path) -> None:
         sys.exit(1)
 
 
-def escape_html_tags(content: str) -> str:
-    """Escape all angle brackets < > in the content.
-
-    Args:
-        content (str): Input text content
-
-    Returns:
-        str: Content with all angle brackets escaped
-    """
-    return content.replace("<", r"\<").replace("{", r"\{")
-
-
 def read_file_content(file_path: str) -> str:
     """Read content from a file.
 
@@ -55,7 +43,7 @@ def read_file_content(file_path: str) -> str:
     Returns:
         str: Content of the file
     """
-    with open(file_path, "r", encoding="utf-8") as f:
+    with open(file_path, encoding="utf-8") as f:
         return f.read()
 
 
@@ -86,11 +74,8 @@ def convert_md_to_mdx(input_dir: Path) -> None:
         # Read content from .md file
         content = md_file.read_text(encoding="utf-8")
 
-        # Escape HTML tags
-        processed_content = escape_html_tags(content)
-
         # Update sidenav title
-        processed_content = processed_content.replace("sidebar_label: ", "sidebarTitle: ")
+        processed_content = content.replace("sidebar_label: ", "sidebarTitle: ")
 
         # Write content to .mdx file
         mdx_file.write_text(processed_content, encoding="utf-8")
@@ -100,18 +85,18 @@ def convert_md_to_mdx(input_dir: Path) -> None:
         print(f"Converted: {md_file} -> {mdx_file}")
 
 
-def get_mdx_files(directory: Path) -> List[str]:
+def get_mdx_files(directory: Path) -> list[str]:
     """Get all MDX files in directory and subdirectories."""
-    return [f"{str(p.relative_to(directory).with_suffix(''))}".replace("\\", "/") for p in directory.rglob("*.mdx")]
+    return [f"{p.relative_to(directory).with_suffix('')!s}".replace("\\", "/") for p in directory.rglob("*.mdx")]
 
 
-def add_prefix(path: str, parent_groups: List[str] = None) -> str:
+def add_prefix(path: str, parent_groups: list[str] = None) -> str:
     """Create full path with prefix and parent groups."""
     groups = parent_groups or []
     return f"docs/reference/{'/'.join(groups + [path])}"
 
 
-def create_nav_structure(paths: List[str], parent_groups: List[str] = None) -> List[Any]:
+def create_nav_structure(paths: list[str], parent_groups: list[str] = None) -> list[Any]:
     """Convert list of file paths into nested navigation structure."""
     groups = {}
     pages = []
@@ -142,9 +127,8 @@ def create_nav_structure(paths: List[str], parent_groups: List[str] = None) -> L
     return sorted_groups + sorted_pages
 
 
-def update_nav(mint_json_path: Path, new_nav_pages: List[Any]) -> None:
-    """
-    Update the 'API Reference' section in mint.json navigation with new pages.
+def update_nav(mint_json_path: Path, new_nav_pages: list[Any]) -> None:
+    """Update the 'API Reference' section in mint.json navigation with new pages.
 
     Args:
         mint_json_path: Path to mint.json file
@@ -152,7 +136,7 @@ def update_nav(mint_json_path: Path, new_nav_pages: List[Any]) -> None:
     """
     try:
         # Read the current mint.json
-        with open(mint_json_path, "r") as f:
+        with open(mint_json_path) as f:
             mint_config = json.load(f)
 
         # Find and update the API Reference section
@@ -189,6 +173,18 @@ def update_mint_json_with_api_nav(script_dir: Path, api_dir: Path) -> None:
     update_nav(mint_json_path, nav_structure)
 
 
+def generate_mint_json_from_template(mint_json_template_path: Path, mint_json_path: Path) -> None:
+    # if mint.json already exists, delete it
+    if mint_json_path.exists():
+        os.remove(mint_json_path)
+
+    # Copy the template file to mint.json
+    mint_json_template_content = read_file_content(mint_json_template_path)
+
+    # Write content to mint.json
+    write_file_content(mint_json_path, mint_json_template_content)
+
+
 def main() -> None:
     script_dir = Path(__file__).parent.absolute()
 
@@ -210,6 +206,13 @@ def main() -> None:
     # Convert MD to MDX
     print("Converting MD files to MDX...")
     convert_md_to_mdx(args.api_dir)
+
+    # Create mint.json from the template file
+    mint_json_template_path = script_dir / "mint-json-template.json"
+    mint_json_path = script_dir / "mint.json"
+
+    print("Generating mint.json from template...")
+    generate_mint_json_from_template(mint_json_template_path, mint_json_path)
 
     # Update mint.json
     update_mint_json_with_api_nav(script_dir, args.api_dir)

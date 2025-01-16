@@ -7,7 +7,7 @@ title: code_utils
 
 ```python
 def content_str(
-    content: Union[str, List[Union[UserMessageTextContentPart,
+    content: Union[str, list[Union[UserMessageTextContentPart,
                                    UserMessageImageContentPart]], None]
 ) -> str
 ```
@@ -42,16 +42,16 @@ represented by a placeholder image token. If the content is None, an empty strin
 def infer_lang(code: str) -> str
 ```
 
-infer the language for the code.
+Infer the language for the code.
 TODO: make it robust.
 
 ### extract\_code
 
 ```python
 def extract_code(
-        text: Union[str, List],
+        text: Union[str, list],
         pattern: str = CODE_BLOCK_PATTERN,
-        detect_single_line_code: bool = False) -> List[Tuple[str, str]]
+        detect_single_line_code: bool = False) -> list[tuple[str, str]]
 ```
 
 Extract code from a text.
@@ -76,10 +76,10 @@ Extract code from a text.
 
 ```python
 def generate_code(pattern: str = CODE_BLOCK_PATTERN,
-                  **config) -> Tuple[str, float]
+                  **config) -> tuple[str, float]
 ```
 
-(openai\<1) Generate code.
+`(openai<1)` Generate code.
 
 **Arguments**:
 
@@ -99,7 +99,7 @@ def generate_code(pattern: str = CODE_BLOCK_PATTERN,
 def improve_function(file_name, func_name, objective, **config)
 ```
 
-(openai\<1) Improve the function to achieve the objective.
+`(openai<1)` Improve the function to achieve the objective.
 
 ### improve\_code
 
@@ -107,7 +107,7 @@ def improve_function(file_name, func_name, objective, **config)
 def improve_code(files, objective, suggest_only=True, **config)
 ```
 
-(openai\<1) Improve the code to achieve a given objective.
+`(openai<1)` Improve the code to achieve a given objective.
 
 **Arguments**:
 
@@ -154,8 +154,8 @@ def execute_code(
         timeout: Optional[int] = None,
         filename: Optional[str] = None,
         work_dir: Optional[str] = None,
-        use_docker: Union[List[str], str, bool] = SENTINEL,
-        lang: Optional[str] = "python") -> Tuple[int, str, Optional[str]]
+        use_docker: Union[list[str], str, bool] = SENTINEL,
+        lang: Optional[str] = "python") -> tuple[int, str, Optional[str]]
 ```
 
 Execute code in a docker container.
@@ -199,10 +199,10 @@ This function is not tested on MacOS.
 ### generate\_assertions
 
 ```python
-def generate_assertions(definition: str, **config) -> Tuple[str, float]
+def generate_assertions(definition: str, **config) -> tuple[str, float]
 ```
 
-(openai\<1) Generate assertions for a function.
+`(openai<1)` Generate assertions for a function.
 
 **Arguments**:
 
@@ -218,17 +218,17 @@ def generate_assertions(definition: str, **config) -> Tuple[str, float]
 ### eval\_function\_completions
 
 ```python
-def eval_function_completions(responses: List[str],
+def eval_function_completions(responses: list[str],
                               definition: str,
                               test: Optional[str] = None,
                               entry_point: Optional[str] = None,
                               assertions: Optional[Union[str, Callable[
-                                  [str], Tuple[str, float]]]] = None,
+                                  [str], tuple[str, float]]]] = None,
                               timeout: Optional[float] = 3,
-                              use_docker: Optional[bool] = True) -> Dict
+                              use_docker: Optional[bool] = True) -> dict
 ```
 
-(openai\<1) Select a response from a list of responses for the function completion task (using generated assertions), and/or evaluate if the task is successful using a gold test.
+`(openai<1)` Select a response from a list of responses for the function completion task (using generated assertions), and/or evaluate if the task is successful using a gold test.
 
 **Arguments**:
 
@@ -257,22 +257,22 @@ class PassAssertionFilter()
 def pass_assertions(context, response, **_)
 ```
 
-(openai\<1) Check if the response passes the assertions.
+`(openai<1)` Check if the response passes the assertions.
 
 ### implement
 
 ```python
 def implement(
     definition: str,
-    configs: Optional[List[Dict]] = None,
+    configs: Optional[list[dict]] = None,
     assertions: Optional[Union[str,
                                Callable[[str],
-                                        Tuple[str,
+                                        tuple[str,
                                               float]]]] = generate_assertions
-) -> Tuple[str, float]
+) -> tuple[str, float]
 ```
 
-(openai\<1) Implement a function from a definition.
+`(openai<1)` Implement a function from a definition.
 
 **Arguments**:
 

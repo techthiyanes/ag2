@@ -73,7 +73,7 @@ Note: Current implementation does not allow you to edit a previously existing im
 ### \_\_init\_\_
 
 ```python
-def __init__(llm_config: Dict,
+def __init__(llm_config: dict,
              resolution: Literal["256x256", "512x512", "1024x1024",
                                  "1792x1024", "1024x1792"] = "1024x1024",
              quality: Literal["standard", "hd"] = "standard",
@@ -112,11 +112,11 @@ message received by the agent.
     # Assuming you have llm configs configured for the LLMs you want to use and Dalle.
     # Create the agent
     agent = autogen.ConversableAgent(
-        name="dalle", llm_config=\{...}, max_consecutive_auto_reply=3, human_input_mode="NEVER"
+        name="dalle", llm_config={...}, max_consecutive_auto_reply=3, human_input_mode="NEVER"
     )
 
     # Create an ImageGenerator with desired settings
-    dalle_gen = generate_images.DalleImageGenerator(llm_config=\{...})
+    dalle_gen = generate_images.DalleImageGenerator(llm_config={...})
 
     # Add the ImageGeneration capability to the agent
     agent.add_capability(ImageGeneration(image_generator=dalle_gen))
@@ -127,7 +127,7 @@ message received by the agent.
 ```python
 def __init__(image_generator: ImageGenerator,
              cache: Optional[AbstractCache] = None,
-             text_analyzer_llm_config: Optional[Dict] = None,
+             text_analyzer_llm_config: Optional[dict] = None,
              text_analyzer_instructions: str = PROMPT_INSTRUCTIONS,
              verbosity: int = 0,
              register_reply_position: int = 2)

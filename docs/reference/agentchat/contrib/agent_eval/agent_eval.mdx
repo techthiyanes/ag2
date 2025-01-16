@@ -6,7 +6,7 @@ title: agentchat.contrib.agent_eval.agent_eval
 ### generate\_criteria
 
 ```python
-def generate_criteria(llm_config: Optional[Union[Dict, Literal[False]]] = None,
+def generate_criteria(llm_config: Optional[Union[dict, Literal[False]]] = None,
                       task: Task = None,
                       additional_instructions: str = "",
                       max_round=2,
@@ -22,6 +22,7 @@ Creates a list of criteria for evaluating the utility of a given task.
 - `additional_instructions` _str_ - Additional instructions for the criteria agent.
 - `max_round` _int_ - The maximum number of rounds to run the conversation.
 - `use_subcritic` _bool_ - Whether to use the subcritic agent to generate subcriteria.
+  
 
 **Returns**:
 
@@ -30,8 +31,8 @@ Creates a list of criteria for evaluating the utility of a given task.
 ### quantify\_criteria
 
 ```python
-def quantify_criteria(llm_config: Optional[Union[Dict, Literal[False]]] = None,
-                      criteria: List[Criterion] = None,
+def quantify_criteria(llm_config: Optional[Union[dict, Literal[False]]] = None,
+                      criteria: list[Criterion] = None,
                       task: Task = None,
                       test_case: str = "",
                       ground_truth: str = "")
@@ -46,6 +47,7 @@ Quantifies the performance of a system using the provided criteria.
 - `task` _Task_ - The task to evaluate.
 - `test_case` _str_ - The test case to evaluate.
 - `ground_truth` _str_ - The ground truth for the test case.
+  
 
 **Returns**:
 

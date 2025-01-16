@@ -1,6 +1,11 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_stream.ipynb
+description: Automated continual learning from new data.
 source_notebook: /notebook/agentchat_stream.ipynb
+tags:
+- streaming
+- async
+- learning
 title: Interactive LLM Agent Dealing with Data Stream
 ---
 
@@ -14,7 +19,7 @@ AutoGen offers conversable agents powered by LLM, tool, or human, which
 can be used to perform tasks collectively via automated chat. This
 framework allows tool use and human participation through multi-agent
 conversation. Please find documentation about this feature
-[here](https://ag2ai.github.io/ag2/docs/Use-Cases/agent_chat).
+[here](https://docs.ag2.ai/docs/Use-Cases/agent_chat).
 
 In this notebook, we demonstrate how to use customized agents to
 continuously acquire news from the web and ask for investment
@@ -37,7 +42,7 @@ pip install autogen
 ## Set your API Endpoint
 
 The
-[`config_list_from_json`](https://ag2ai.github.io/ag2/docs/reference/oai/openai_utils#config_list_from_json)
+[`config_list_from_json`](https://docs.ag2.ai/docs/reference/oai/openai_utils#config-list-from-json)
 function loads a list of configurations from an environment variable or
 a json file.
 
@@ -95,10 +100,6 @@ First, we use the following code to simulate the data stream process.
 
 ```python
 def get_market_news(ind, ind_upper):
-    import json
-
-    import requests
-
     # replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
     # url = 'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&sort=LATEST&limit=5&apikey=demo'
     # r = requests.get(url)
@@ -212,14 +213,14 @@ We invoke the `a_initiate_chat()` method of the user proxy agent to
 start the conversation.
 
 ```python
-await user_proxy.a_initiate_chat(  # noqa: F704
+await user_proxy.a_initiate_chat(
     assistant,
     message="""Give me investment suggestion in 3 bullet points.""",
 )
 while not data_task.done() and not data_task.cancelled():
-    reply = await user_proxy.a_generate_reply(sender=assistant)  # noqa: F704
+    reply = await user_proxy.a_generate_reply(sender=assistant)
     if reply is not None:
-        await user_proxy.a_send(reply, assistant)  # noqa: F704
+        await user_proxy.a_send(reply, assistant)
 ```
 
 ``` text

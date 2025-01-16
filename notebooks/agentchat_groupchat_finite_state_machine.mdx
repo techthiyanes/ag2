@@ -1,6 +1,12 @@
 ---
 custom_edit_url: https://github.com/ag2ai/ag2/edit/main/notebook/agentchat_groupchat_finite_state_machine.ipynb
+description: Explore the demonstration of the Finite State Machine implementation,
+  which allows the user to input speaker transition constraints.
 source_notebook: /notebook/agentchat_groupchat_finite_state_machine.ipynb
+tags:
+- group chat
+- fsm
+- orchestration
 title: FSM - User can input speaker transition constraints
 ---
 
@@ -14,7 +20,7 @@ AutoGen offers conversable agents powered by LLM, tool, or human, which
 can be used to perform tasks collectively via automated chat. This
 framework allows tool use and human participation through multi-agent
 conversation. Please find documentation about this feature
-[here](https://ag2ai.github.io/ag2/docs/Use-Cases/agent_chat).
+[here](https://docs.ag2.ai/docs/Use-Cases/agent_chat).
 
 This notebook is about using graphs to define the transition paths
 amongst speakers.
@@ -23,16 +29,18 @@ Benefits - This contribution fills the gap between the current modes of
 GroupChat Class (auto, manual, round_robin) and an expressive directed
 graph. See Motivation for more detailed discussion.
 
-````mdx-code-block
-:::info Requirements
+
+<div class="info Requirements">
+<Info>
 Install `pyautogen`:
 ```bash
 pip install pyautogen
 ```
 
-For more information, please refer to the [installation guide](/docs/installation/).
-:::
-````
+For more information, please refer to the [installation guide](/docs/installation/Installation).
+</Info>
+</div>
+
 
 ```python
 %%capture --no-stderr
@@ -43,14 +51,14 @@ For more information, please refer to the [installation guide](/docs/installatio
 ```python
 import random  # noqa E402
 
-import matplotlib.pyplot as plt  # noqa E402
-import networkx as nx  # noqa E402
+import matplotlib.pyplot as plt
+import networkx as nx
 
-import autogen  # noqa E402
-from autogen.agentchat.conversable_agent import ConversableAgent  # noqa E402
-from autogen.agentchat.assistant_agent import AssistantAgent  # noqa E402
-from autogen.agentchat.groupchat import GroupChat  # noqa E402
-from autogen.graph_utils import visualize_speaker_transitions_dict  # noqa E402
+import autogen
+from autogen.agentchat.conversable_agent import ConversableAgent
+from autogen.agentchat.assistant_agent import AssistantAgent
+from autogen.agentchat.groupchat import GroupChat
+from autogen.graph_utils import visualize_speaker_transitions_dict
 ```
 
 
