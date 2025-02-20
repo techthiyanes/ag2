@@ -28,6 +28,13 @@ h4 {
   }
 }
 
+.prose :where(h3):not(:where([class~=not-prose],[class~=not-prose] *)) {
+  margin-top: 1em;
+}
+.prose :where(h2):not(:where([class~=not-prose],[class~=not-prose] *)) {
+  margin-top: 0.8em;
+}
+
 .card h2 {
   font-size: 2rem !important;
 
@@ -73,6 +80,24 @@ body.reference-page h2,
 body.reference-page h3,
 body.reference-page h4 {
   text-transform: none !important;
+}
+
+.edit-url-container {
+  margin-top: 1rem;
+  & > a {
+    color: #4b9cd6;
+    & > svg {
+      margin-right: 0.25rem;
+      vertical-align: baseline !important;
+    }
+    & > p.icon {
+      display: inline-block;
+      margin-right: 0.25rem;
+      & > svg {
+        vertical-align: baseline;
+      }
+    }
+  }
 }
 
 /* Reference section starts */
@@ -417,7 +442,6 @@ a.colab-badge > img, a.github-badge  > img {
   text-align: center;
 }
 .popular-resources .youtube-video a {
-  color: #000;
   display: block;
   --font-family-headings-custom: "Jersey 10" !important;
   font-family: var(
@@ -427,6 +451,7 @@ a.colab-badge > img, a.github-badge  > img {
   font-size: 1.125rem;
   text-align: left;
   margin-top: 6px;
+  margin-left: 0.15rem;
 }
 
 .popular-resources .youtube-video iframe {
